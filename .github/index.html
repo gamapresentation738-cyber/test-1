@@ -259,10 +259,30 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="fabriaction">
-                    <div class="gallery-image">
-                        <img src="images/door-1.jpg" alt="Modern Aluminum Doors" loading="lazy">
-                    </div>
+               <div class="gallery-item" data-category="doors">
+    <div class="gallery-image-carousel">
+        <!-- Main Display Image -->
+        <div class="carousel-container">
+            <img id="mainImage-doors-1" class="carousel-image active" src="images/door-1.jpg" alt="Modern Aluminum Doors">
+            <img class="carousel-image" src="images/door-1-angle.jpg" alt="Door Angle View">
+            <img class="carousel-image" src="images/door-1-detail.jpg" alt="Door Detail">
+        </div>
+         <!-- Navigation Buttons -->
+        <button class="carousel-btn prev" onclick="changeImage(this, -1)">&#10094;</button>
+        <button class="carousel-btn next" onclick="changeImage(this, 1)">&#10095;</button>
+        
+        <!-- Image Counter -->
+        <div class="image-counter">
+            <span class="current-img">1</span> / <span class="total-img">3</span>
+        </div>
+    </div>
+    
+    <!-- Thumbnail Preview -->
+    <div class="thumbnail-strip">
+        <img class="thumbnail active" src="images/door-1.jpg" alt="Thumb 1" onclick="showImage(this)">
+        <img class="thumbnail" src="images/door-1-angle.jpg" alt="Thumb 2" onclick="showImage(this)">
+        <img class="thumbnail" src="images/door-1-detail.jpg" alt="Thumb 3" onclick="showImage(this)">
+    </div>
                     <div class="gallery-overlay">
                         <h4>Entry Door Systems</h4>
                         <p>Premium entrance door solutions</p>
