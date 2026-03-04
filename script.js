@@ -80,6 +80,82 @@ filterButtons.forEach(button => {
         });
     });
 });
+// Change carousel image
+function changeImage(button, direction) {
+    // Get the carousel container
+    const carousel = button.closest('.gallery-image-carousel');
+    const images = carousel.querySelectorAll('.carousel-image');
+    const thumbnails = carousel.parentElement.querySelectorAll('.thumbnail');
+    const counter = carousel.querySelector('.image-counter');
+    
+    // Find current active image
+    let currentIndex = 0;
+    images.forEach((img, index) => {
+        if (img.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+    
+    // Calculate new index
+    let newIndex = currentIndex + direction;
+    if (newIndex >= images.length) {
+        newIndex = 0; // Loop to first
+    } else if (newIndex < 0) {
+        newIndex = images.length - 1; // Loop to last
+    }
+    
+    // Remove active class from all
+    images.forEach(img => img.classList.remove('active'));
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    
+    // Add active class to new image
+    images[newIndex].classList.add('active');
+    thumbnails[newIndex].classList.add('active');
+    
+    // Update counter
+    counter.querySelector('.current-img').textContent = newIndex + 1;
+}
+
+// Show image from thumbnail click
+function showImage(thumbnail) {
+    // Get parent gallery item
+    const galleryItem = thumbnail.closest('.gallery-item');
+    const carousel = galleryItem.querySelector('.gallery-image-carousel');
+    const images = carousel.querySelectorAll('.carousel-image');
+    const thumbnails = galleryItem.querySelectorAll('.thumbnail');
+    const counter = carousel.querySelector('.image-counter');
+    
+    // Find thumbnail index
+    let index = 0;
+    thumbnails.forEach((thumb, i) => {
+        if (thumb === thumbnail) {
+            index = i;
+        }
+    });
+    
+    // Remove active class from all
+    images.forEach(img => img.classList.remove('active'));
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    
+    // Add active class to selected image
+    images[index].classList.add('active');
+    thumbnail.classList.add('active');
+    
+    // Update counter
+    counter.querySelector('.current-img').textContent = index + 1;
+}
+
+// Keyboard navigation (optional)
+document.addEventListener('keydown', (e) => {
+    const activeCarousel = document.querySelector('.gallery-image-carousel:hover');
+    if (!activeCarousel) return;
+    
+    if (e.key === 'ArrowLeft') {
+        activeCarousel.querySelector('.carousel-btn.prev').click();
+    } else if (e.key === 'ArrowRight') {
+        activeCarousel.querySelector('.carousel-btn.next').click();
+    }
+});
 
 // WhatsApp Form Submission
 const contactForm = document.getElementById('contactForm');
